@@ -1,0 +1,379 @@
+{% extends 'admin_user/admin_management.html' %} 
+{% block body %}
+<style type="text/css">
+	.rc_print,.rc_copy,.rc_excel,.rc_csv,.rc_pdf{display: none;}
+</style>
+<div class="container">
+<style type="text/css">
+	.supplier_print,.supplier_copy,.supplier_excel,.supplier_csv,.supplier_pdf{display: none;}
+</style>
+<!--begin::Card-->
+<div class="card card-custom gutter-b">
+	<div class="card-header flex-wrap border-0 pt-6 pb-0">
+		<div class="card-title">
+		</div>
+		<div class="card-toolbar">
+			<!--begin::Dropdown-->
+		<div class="dropdown dropdown-inline mr-2">
+			<button type="button" class="btn btn-light-primary font-weight-bolder dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				<span class="svg-icon svg-icon-md"><!--begin::Svg Icon | path:assets/media/svg/icons/Design/PenAndRuller.svg-->
+					<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+			    		<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+			        		<rect x="0" y="0" width="24" height="24"/>
+			        		<path d="M3,16 L5,16 C5.55228475,16 6,15.5522847 6,15 C6,14.4477153 5.55228475,14 5,14 L3,14 L3,12 L5,12 C5.55228475,12 6,11.5522847 6,11 C6,10.4477153 5.55228475,10 5,10 L3,10 L3,8 L5,8 C5.55228475,8 6,7.55228475 6,7 C6,6.44771525 5.55228475,6 5,6 L3,6 L3,4 C3,3.44771525 3.44771525,3 4,3 L10,3 C10.5522847,3 11,3.44771525 11,4 L11,19 C11,19.5522847 10.5522847,20 10,20 L4,20 C3.44771525,20 3,19.5522847 3,19 L3,16 Z" fill="#000000" opacity="0.3"/>
+			        		<path d="M16,3 L19,3 C20.1045695,3 21,3.8954305 21,5 L21,15.2485298 C21,15.7329761 20.8241635,16.200956 20.5051534,16.565539 L17.8762883,19.5699562 C17.6944473,19.7777745 17.378566,19.7988332 17.1707477,19.6169922 C17.1540423,19.602375 17.1383289,19.5866616 17.1237117,19.5699562 L14.4948466,16.565539 C14.1758365,16.200956 14,15.7329761 14,15.2485298 L14,5 C14,3.8954305 14.8954305,3 16,3 Z" fill="#000000"/>
+			    		</g>
+					</svg><!--end::Svg Icon-->
+				</span>Export
+			</button>
+			<!--begin::Dropdown Menu-->
+			<div class="dropdown-menu dropdown-menu-sm dropdown-menu-right">
+				<!--begin::Navigation-->
+				<ul class="navi flex-column navi-hover py-2">
+					<li class="navi-header font-weight-bolder text-uppercase font-size-sm text-primary pb-2">
+				        Choose an option:
+				    </li>
+					<li class="navi-item">
+						<a class="navi-link" data-class="supplier_print" onclick="dbExport(this,'tbl_supplier_masterlist')">
+							<span class="navi-icon"><i class="la la-print"></i></span>
+							<span class="navi-text">Print</span>
+						</a>
+					</li>
+					<li class="navi-item">
+						<a href="#" class="navi-link" data-class="supplier_copy" onclick="dbExport(this,'tbl_supplier_masterlist')">
+							<span class="navi-icon"><i class="la la-copy"></i></span>
+							<span class="navi-text">Copy</span>
+						</a>
+					</li>
+					<li class="navi-item">
+						<a class="navi-link" data-class="supplier_excel" onclick="dbExport(this,'tbl_supplier_masterlist')">
+							<span class="navi-icon"><i class="la la-file-excel-o"></i></span>
+							<span class="navi-text">Excel</span>
+						</a>
+					</li>
+					<li class="navi-item">
+						<a class="navi-link" data-class="supplier_csv" onclick="dbExport(this,'tbl_supplier_masterlist')">
+							<span class="navi-icon"><i class="la la-file-text-o"></i></span>
+							<span class="navi-text">CSV</span>
+						</a>
+					</li>
+					<li class="navi-item">
+						<a class="navi-link" data-class="supplier_pdf" onclick="dbExport(this,'tbl_supplier_masterlist')">
+							<span class="navi-icon"><i class="la la-file-pdf-o"></i></span>
+							<span class="navi-text">PDF</span>
+						</a>
+					</li>
+				</ul>
+				<!--end::Navigation-->
+			</div>
+			<!--end::Dropdown Menu-->
+		</div>
+		<!--end::Dropdown-->
+
+		<!--begin::Button-->
+		<a href="#" class="btn btn-primary font-weight-bolder" data-toggle="modal" data-target="#evactionCenter">
+			<span class="svg-icon svg-icon-md">
+				<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+				    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+				        <rect x="0" y="0" width="24" height="24"/>
+				        <circle fill="#000000" cx="9" cy="15" r="6"/>
+				        <path d="M8.8012943,7.00241953 C9.83837775,5.20768121 11.7781543,4 14,4 C17.3137085,4 20,6.6862915 20,10 C20,12.2218457 18.7923188,14.1616223 16.9975805,15.1987057 C16.9991904,15.1326658 17,15.0664274 17,15 C17,10.581722 13.418278,7 9,7 C8.93357256,7 8.86733422,7.00080962 8.8012943,7.00241953 Z" fill="#000000" opacity="0.3"/>
+				    </g>
+				</svg><!--end::Svg Icon-->
+			</span>	New Record
+		</a>
+		<!--end::Button-->
+		</div>
+	</div>
+
+	<div class="card-body">
+		<!--begin: Datatable-->
+    <table id="tbl_evacuation_centers" class="table table-separate table-head-custom table-checkable">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Building Name</th>
+                <th>Address</th>
+                <th>Longitude</th>
+                <th>Latitude</th>
+                <th>Capacity</th>
+                <th>Maximum Capacity</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+    <!--end: Datatable-->
+	</div>
+</div>
+<!--end::Card-->
+</div>
+
+<!-- Modal-->
+<div class="modal fade bd-example-modal-lg" id="evactionCenter" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdrop" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="evactionCenterLabel">Adding new Record</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="clearUponClose()">
+                    <i aria-hidden="true" class="ki ki-close"></i>
+                </button>
+            </div>
+			<form id="evacuation_form_id">
+			    <div class="modal-body">
+			        <div class="card card-custom">
+			            <!--begin::Form-->
+			            <div class="card-body">
+			                <div class="form-group">
+			                    <input type="hidden" name="id" id="_id" value="0">
+			                    <label>Building Name
+																					<span class="text-danger">*</span>
+																				</label>
+			                    <input type="text" class="form-control" name="evacuation_building_name" id="evacuation_building_name" placeholder="Enter Building Name" />
+			                    <span id="error" class="text-danger"></span>
+			                </div>
+			                <div class="form-group">
+			                    <label>Address <span class="text-danger">*</span></label>
+			                    <textarea class="form-control" name="evacuation_address" id="evacuation_address"></textarea>
+			                </div>
+			                <div class="row">
+			                    <div class="col-md-6">
+			                        <div class="form-group">
+			                            <label>Longitudes
+																					<span class="text-danger">*</span>
+																				</label>
+			                            <input type="number" class="form-control" name="evacuation_long" id="evacuation_long" placeholder="Enter Longitudes" />
+			                            <span id="error" class="text-danger"></span>
+			                        </div>
+			                        <div class="form-group">
+			                            <label>Capacity Accomodated
+																					<span class="text-danger">*</span>
+																				</label>
+			                            <input type="number" class="form-control" name="evacuation_capacity" id="evacuation_capacity" placeholder="Enter Latitudes" />
+			                            <span id="error" class="text-danger"></span>
+			                        </div>
+			                    </div>
+			                    <div class="col-md-6">
+			                        <div class="form-group">
+			                            <label>Latitudes
+																					<span class="text-danger">*</span>
+																				</label>
+			                            <input type="number" class="form-control" name="evacuation_lat" id="evacuation_lat" placeholder="Enter Latitudes" />
+			                            <span id="error" class="text-danger"></span>
+			                        </div>
+			                        <div class="form-group">
+			                            <label>Maximum Capacity
+																					<span class="text-danger">*</span>
+																				</label>
+			                            <input type="number" class="form-control" name="evacuation_max_capacity" id="evacuation_max_capacity" placeholder="Enter Latitudes" />
+			                            <span id="error" class="text-danger"></span>
+			                        </div>
+			                    </div>
+			                    <div class="col-md-12">
+			                    	<div class="form-group">
+			                            <label>File
+										<span class="text-danger">*</span></label>
+			                            <input type="file" class="form-control" name="evac_img_path" id="evac_img_path" />
+			                            <span id="error" class="text-danger"></span>
+			                        </div>
+			                    </div>
+			                </div>
+			                <div class="form-group row" id="_status" style="display: ;">
+			                    <label class="col-2 col-form-label">Status:</label>
+			                    <div class="col-3">
+			                        <span class="switch switch-outline switch-icon switch-success float-right">
+																						<label>
+																							<input type="checkbox" checked="checked" name="status" id="status" />
+																							<span></span>
+			                        </label>
+			                        </span>
+			                    </div>
+			                </div>
+			            </div>
+			            <!--end::Form-->
+			        </div>
+			    </div>
+			    <div class="modal-footer">
+			        <button type="button" class="btn btn-light-primary font-weight-bold" data-dismiss="modal" onclick="clearUponClose()">Close</button>
+			        <button class="btn btn-primary font-weight-bold" type="button" id="btn_save_evac">Save changes</button>
+			    </div>
+			</form>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+	$( document ).ready(function() {
+		load_evacuation_centers_data();
+	});
+
+    function load_evacuation_centers_data() {
+        getDataWithCallback('/get_evaction_centers_data', function(res) {
+            console.log(res)
+            var cols = [
+            		{'data': 'id'},
+                {'data': 'evac_building_name'},
+                {'data': 'evac_address'},
+                {'data': 'evac_long'},
+                {'data': 'evac_lat'},
+                {'data': 'capacity'},
+                {'data': 'max_capacity'},
+                {'data': 'evac_status'},
+                {'data': 'btn'},
+            ]
+            loadDataTableEvac('#tbl_evacuation_centers', cols, res);
+        });
+    }
+
+    function save_newEvacuationCenter(callback){
+    	var stat_value;
+    	var form_data = $('#evacuation_form_id').serializeObject();
+    	
+    	if (form_data.status) {stat_value = 0}else{stat_value = 1}
+    	var fdata = new FormData();
+    	fdata.append('id', byId('_id').value);
+    	fdata.append('evacuation_building_name', byId('evacuation_building_name').value);
+    	fdata.append('evacuation_address', byId('evacuation_address').value);
+    	fdata.append('evacuation_long', byId('evacuation_long').value);
+    	fdata.append('evacuation_capacity', byId('evacuation_capacity').value);
+    	fdata.append('evacuation_lat', byId('evacuation_lat').value);
+    	fdata.append('evacuation_max_capacity', byId('evacuation_max_capacity').value);
+    	fdata.append('status', stat_value);
+		jQuery.each($("#evac_img_path")[0].files, function(i, file) {
+			fdata.append('photo['+i+']', file);
+		})
+
+
+		 $.ajax({
+	        type: 'POST',
+	        url: "/save_evacuationCenter",
+	        contentType:false,
+	        processData:false,
+	        cache: false,
+	        data:fdata,
+	        beforeSend: function() {
+		       console.log(fdata)
+		    },
+	        success: function(res) {
+	        	if (res) {
+	        		console.log(res, " res data 124")
+	    			if (res.message == 'Insert') {
+	    				Swal.fire("Inserted Successfully!", "Information you entered has been saved", "success");
+	    			}else if (res.message == 'Update') {
+	    				Swal.fire("Updated Successfully!", "Information you entered has been saved", "success");
+	    			}
+	    			callback(res.message)
+	    			byId('evacuation_form_id').reset();
+	    			byId('_id').value = 0;
+	    			load_evacuation_centers_data()
+	    			$('#evactionCenter').modal('hide');
+	    		}
+	        },
+	        error: function() {
+	            error_in_saving("error occured");
+	        }
+	    })
+    	// sendDataWithCallback('/save_evacuationCenter', fdata, function(res){
+    		// if (res) {
+    		// 	if (res.message == 'Insert') {
+    		// 		Swal.fire("Inserted Successfully!", "Information you entered has been saved", "success");
+    		// 	}else if (res.message == 'Update') {
+    		// 		Swal.fire("Updated Successfully!", "Information you entered has been saved", "success");
+    		// 	}
+    		// 	callback(res.message)
+    		// 	byId('evacuation_form_id').reset();
+    		// 	byId('_id').value = 0;
+    		// 	load_evacuation_centers_data()
+    		// 	$('#evactionCenter').modal('hide');
+    		// }
+    	// });
+    }
+
+    function evac_delete(elem){
+			var elem_tbl = elem.getAttribute('data-tbl');
+			var tr = $(elem).closest('tr');
+		    let tbl_data = $(elem_tbl).DataTable().row( tr ).data();
+		    DeleteSweet(tbl_data, '/delete_evacuation', function(res){
+		    	load_evacuation_centers_data()
+		    })
+		}
+
+
+	function DeleteSweet(data, route, callback){
+		const swalWithBootstrapButtons = Swal.mixin({
+		  customClass: {
+		    confirmButton: 'btn btn-success',
+		    cancelButton: 'btn btn-danger'
+		  },
+		  buttonsStyling: false
+		})
+
+		swalWithBootstrapButtons.fire({
+		  title: 'Are you sure?',
+		  text: "You won't be able to revert this!",
+		  icon: 'warning',
+		  showCancelButton: true,
+		  confirmButtonText: 'Yes, delete it!',
+		  cancelButtonText: 'No, cancel!',
+		  reverseButtons: true
+		}).then((result) => {
+		  if (result.isConfirmed) {
+		  	sendDataWithCallback(route,data,function(res){
+		  		if (res) {
+		  			console.log(res)
+		  			if (res.data=="success" && res.status == 200) {
+		    			swalWithBootstrapButtons.fire('Deleted!','Your data has been deleted.','success');
+		  				callback(res.data)
+		  			}else if(res.data=="failed" && res.status == 400){
+						Swal.fire({icon: 'error',title: 'Oops...',text: 'Something went wrong!',footer: '<a href="">Why do I have this issue?</a>'});
+		  			}else{
+		  				console.log("Something went wrong. Please contact administrator");
+		  			}
+		  		}
+		  	});
+		  } else if (
+		    /* Read more about handling dismissals below */
+		    result.dismiss === Swal.DismissReason.cancel
+		  ) {
+		    swalWithBootstrapButtons.fire(
+		      'Cancelled',
+		      'Your data is safe :)',
+		      'error'
+		    )
+		  }
+		});
+	}
+
+	function clearUponClose(){
+		byId('evacuation_form_id').reset();
+		byId('_id').value = 0;
+	}
+
+	function UpdateEvacuationSweet(elem){
+		$("#evactionCenter").modal('show');
+		var elem_tbl = elem.getAttribute('data-tbl');
+		var tr = $(elem).closest('tr');
+		let tbl_data = $(elem_tbl).DataTable().row( tr ).data();
+		var form = byId('evacuation_form_id');
+		console.log(tbl_data, " tbl_data")
+
+		form.id.value = tbl_data.id;
+		form.evacuation_building_name.value = tbl_data.evac_building_name;
+		form.evacuation_address.value = tbl_data.evac_address;
+		form.evacuation_lat.value = tbl_data.evac_lat;
+
+		form.evacuation_long.value = tbl_data.evac_long;
+		form.evacuation_capacity.value = tbl_data.capacity;
+		form.evacuation_max_capacity.value = tbl_data.max_capacity;
+
+		if (tbl_data.evac_status == 0) {
+		form.status.checked;
+		}else{
+		form.status.checked = false;
+		}
+	}
+
+</script>
+{% endblock %}
