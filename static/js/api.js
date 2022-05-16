@@ -1,6 +1,6 @@
 let data_url = '';
 
-data_url = "http://192.168.254.111:5000";
+data_url = "http://192.168.1.13:5000";
 
 function sendDataWithCallback(url, data, callback) {
     $.ajax({

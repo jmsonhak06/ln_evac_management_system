@@ -37,15 +37,15 @@ def prnt_G(msg):
 	return clr
 
 try:
-	conn = psycopg2.connect(host='localhost',database='db_lnengage',user='postgres',password='JOCKEY123')
-	print("Successfuly Connected to Database")
+	conn = psycopg2.connect(host='localhost',database='db_lnengage',user='postgres',password="postgre123",port=5433)
+	print(style.GREEN("SuccessSuccessfuly Connected to Database") + style.RESET(""))
 except Exception as e:
-	print("Failed to connect database try to restart server")
+	print(style.RED("Failed to connect database try to restart server: '"+str(e)+"'") + style.RESET(""))
 
 
 def crud(sql,ar):
 	try:
-		db = psycopg2.connect(host='localhost',database='db_lnengage',user='postgres',password='JOCKEY123')
+		db = psycopg2.connect(host='localhost',database='db_lnengage',user='postgres',password='postgre123',port=5433)
 		con = db.cursor()
 		con.execute(sql, ar)
 		db.commit()
@@ -61,7 +61,7 @@ def crud(sql,ar):
 
 def crud_p(sql):
 	try:
-		db = psycopg2.connect(host='localhost',database='db_lnengage',user='postgres',password='JOCKEY123')
+		db = psycopg2.connect(host='localhost',database='db_lnengage',user='postgres',password='postgre123',port=5433)
 		con = db.cursor()
 		con.execute(sql)
 		db.commit()
@@ -76,7 +76,7 @@ def crud_p(sql):
 
 def crud_p_lastInsertedID(sql):
 	try:
-		db = psycopg2.connect(host='localhost',database='db_lnengage',user='postgres',password='JOCKEY123')
+		db = psycopg2.connect(host='localhost',database='db_lnengage',user='postgres',password='postgre123',port=5433)
 		con = db.cursor()
 		con.execute(sql)
 		db.commit()
@@ -93,7 +93,7 @@ def crud_p_lastInsertedID(sql):
 
 def pyread(sql):
 	try:
-		connection = psycopg2.connect(host='localhost',database='db_lnengage',user='postgres',password='JOCKEY123')
+		connection = psycopg2.connect(host='localhost',database='db_lnengage',user='postgres',password='postgre123',port=5433)
 		cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
 		fetch_all_as_dict = lambda cursor: [dict(row) for row in cursor]
 		cur.execute(sql) 	
@@ -104,4 +104,4 @@ def pyread(sql):
 		# 	# Read a single record
 		# 	result = cursor.fetchall()
 	except Exception as e:
-		print(style.RED("MYSQL error in pyMSQL: '"+str(e)+"'") + style.RESET(""))
+		print(style.RED("posgres error in posgres: '"+str(e)+"'") + style.RESET(""))

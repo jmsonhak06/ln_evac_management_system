@@ -1,39 +1,40 @@
 
-var wmsServer = "http://localhost:8080/geoserver/db_lnengage/wms";
+var wmsServer = "http://localhost:8081/geoserver/ln_evac/wms";
 
 var admin_boundrs_province = L.tileLayer.wms(wmsServer, {
-    layers: 'db_lnengage:car_munici',
+    layers: 'ln_evac:car_munici',
     format: 'image/png',
     transparent: true,
     attribution: "sample attribute"
 });
 
 var layersArray = [
-					'db_lnengage:car_munici',
-					'db_lnengage:caraga_soil',
-					'db_lnengage:fuzzy_suitareas',
-					'db_lnengage:lasnieves_floodhazard_100year',
-					'db_lnengage:lasnieves_floodhazard_10year',
-					'db_lnengage:lasnieves_floodhazard_15year',
-					'db_lnengage:lasnieves_floodhazard_20year',
-					'db_lnengage:lasnieves_floodhazard_25year',
-					'db_lnengage:lasnieves_floodhazard_2year',
-					'db_lnengage:lasnieves_floodhazard_50year',
-					'db_lnengage:lasnieves_floodhazard_5year',
-					'db_lnengage:ln_affectedbldgs_100year',
-					'db_lnengage:ln_affectedbldgs_10year',
-					'db_lnengage:ln_affectedbldgs_15year',
-					'db_lnengage:ln_affectedbldgs_20year',
-					'db_lnengage:ln_affectedbldgs_25year',
-					'db_lnengage:ln_affectedbldgs_2year',
-					'db_lnengage:ln_affectedbldgs_50year',
-					'db_lnengage:ln_affectedbldgs_5year',
-					'db_lnengage:ln_bldgs',
-					'db_lnengage:ln_boundary',
-					'db_lnengage:ln_candidates',
-					'db_lnengage:ln_capacity10m2',
-					'db_lnengage:ln_capacity5m2',
-					'db_lnengage:ln_existevac'
+					'ln_evac:car_munici',
+					'ln_evac:caraga_soil',
+					'ln_evac:fuzzy_suitareas',
+					'ln_evac:rrl_suitareas',
+					'ln_evac:lasnieves_floodhazard_100year',
+					'ln_evac:lasnieves_floodhazard_10year',
+					'ln_evac:lasnieves_floodhazard_15year',
+					'ln_evac:lasnieves_floodhazard_20year',
+					'ln_evac:lasnieves_floodhazard_25year',
+					'ln_evac:lasnieves_floodhazard_2year',
+					'ln_evac:lasnieves_floodhazard_50year',
+					'ln_evac:lasnieves_floodhazard_5year',
+					'ln_evac:ln_affectedbldgs_100year',
+					'ln_evac:ln_affectedbldgs_10year',
+					'ln_evac:ln_affectedbldgs_15year',
+					'ln_evac:ln_affectedbldgs_20year',
+					'ln_evac:ln_affectedbldgs_25year',
+					'ln_evac:ln_affectedbldgs_2year',
+					'ln_evac:ln_affectedbldgs_50year',
+					'ln_evac:ln_affectedbldgs_5year',
+					'ln_evac:ln_bldgs',
+					'ln_evac:ln_boundary',
+					'ln_evac:ln_candidates',
+					'ln_evac:ln_capacity10m2',
+					'ln_evac:ln_capacity5m2',
+					'ln_evac:ln_existevac'
 				];
 
 
